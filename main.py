@@ -31,7 +31,13 @@ def make(item):
       f.fridge.remove("beef")
       f.fridge.append("burger")
 
-
+@commands.add_command("requests")
+def deliver():
+  for d in f.requests:
+    name = d['name']
+    item = d['item']
+    pay = d['pay']
+    print(name+" wants a "+item+". He will give you $"+pay+" for it.")
 while True:
     cmd = commands.execute(input('>>> ',),)
 

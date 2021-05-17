@@ -2,8 +2,11 @@ fridge = []
 requests = [{
   "name": "John",
   "item":"burger",
-  "pay": "10.00",
-  "tipChance": "10"
+  "pay": "10.00"},
+{
+  "name": "Boss",
+  "item":"burger",
+  "pay": "0.00"
 }]
 money = 0
 def italic(str1,str2=""):
