@@ -1,3 +1,4 @@
+import os
 import pycommands as core
 import fuctions as f
 print("Hi! Let's get cooking! Look at the README to start!")
@@ -32,18 +33,34 @@ def make(item):
       f.fridge.append("burger")
 
 @commands.add_command("requests")
-def deliver():
+def requests():
   for d in f.requests:
     name = d['name']
     item = d['item']
     pay = d['pay']
     print(name+" wants a "+item+". He will give you $"+pay+" for it.")
-while True:
-    cmd = commands.execute(input('>>> ',),)
 
-    if not cmd[0]:  # Checks if command gave error
-        print(cmd[1])  # Prints error message
-    else:
-        continue
-
+@commands.add_command("deliver")
+def deliver(name):
+  for i in range(len(f.requests)):
+     if f.requests[i]['name'] == name:
+      del f.requests[i]
+      f.fridge.remove(f.requests[i]['item'])
+     break
+@commands.add_command("login")
+def login(username):
+  if username=="dev":
+    passcode = os.environ['devLoginPasscode']
+    ink = input("Enter the dev passcode: ")
+    if passcode == ink:
+      print("You have signed in!")
     
+
+
+while True:
+  cmd = commands.execute(input('>>> ',),)
+
+  if not cmd[0]:  # Checks if command gave error
+      print(cmd[1])  # Prints error message
+  else:
+      continue

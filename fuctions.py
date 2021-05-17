@@ -4,7 +4,7 @@ requests = [{
   "item":"burger",
   "pay": "10.00"},
 {
-  "name": "Boss",
+  "name": "Clyde",
   "item":"burger",
   "pay": "0.00"
 }]
