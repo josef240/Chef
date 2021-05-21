@@ -14,6 +14,8 @@ def help():
   f.italic("get ","ingerdent")
   print("fridge")
   f.italic("make ", "food")
+  print("requests")
+  f.italic("recipe","item")
   f.italic("deliver","name")
 
 @commands.add_command("get")
@@ -95,6 +97,25 @@ def requests():
         print(name+" wants an "+item+". She will give you $"+pay+" for it.")
       else:
         print(name+" wants a "+item+". She will give you $"+pay+" for it.")
+
+
+@commands.add_command("recipe")
+def recipes(item):
+  print("To make "+item+" you need:")
+  if item == "burger":
+    print("bun")
+    print("bun")
+    print("beef")
+  elif item == "apple_pie":
+    print("flour")
+    print("apple")
+  elif item == "peach_pie":
+    print("flour")
+    print("peach")
+  elif item == "pumpkin_pie":
+    print("flour")
+    print("pumpkin")
+
 @commands.add_command("deliver")
 def deliver(name):
   for i in range(len(f.requests)):
