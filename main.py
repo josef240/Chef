@@ -5,18 +5,25 @@ import pycommands as core
 import fuctions as f
 import random as r
 from time import sleep as wait
-print("Hi! Let's get cooking! Look at the README to start!")
+print("Hi! Let's get cooking! \nType help to learn how to play.")
 commands = core.Commands(
  '{} was not recognized as a command',
 )
 @commands.add_command("help")
 def help():
   f.italic("get ","ingerdent")
+  print("Get puts items in your fridge.\n")
   print("fridge")
+  print("type fridge to view your fridge.\n")
   f.italic("make ", "food")
+  f.italic("if you have enough ingerdents, you can make a food to give to customers who want it. To check if you have enough ingerdents, type recipe ","foodname\n")
   print("requests")
-  f.italic("recipe","item")
-  f.italic("deliver","name")
+  print("request tells you what the customers want so you can make it.\n")
+  f.italic("recipe ","item")
+  print("this tells you the ingerdents you need to make a recipe.\n")
+  f.italic("deliver ","name")
+  print("type deliver and the persons name to give them the item and make them leave the store.\n")
+  
 
 @commands.add_command("get")
 def get(item, number=1):
