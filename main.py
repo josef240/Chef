@@ -39,6 +39,15 @@ def get(item, number=1):
     f.fridge.append("flour")
   elif item == "pumpkin":
     f.fridge.append("pumpkin")
+  elif item == "milk":
+    f.fridge.append("milk")
+  elif item == "egg":
+    f.fridge.append("egg")
+  elif item == "sugar":
+    f.fridge.append("sugar")
+  elif item == "cocoa":
+    f.fridge.append("cocoa")  
+
 @commands.add_command("fridge")
 def fridge():
   print("You have:")
@@ -53,10 +62,11 @@ def makeRequest():
   else:
    hiwor = n.get_first_name(gender='Female')
    gder="female"
+  itemood = f.ranfood()
   dictus = {
     "name": hiwor,
-    "item": f.ranfood(),
-    "pay": "10.00",
+    "item": itemood,
+    "pay": f.prices[itemood],
     "gender": gder
   }
   return dictus
@@ -69,30 +79,54 @@ def make(item):
     f.fridge.remove("beef")
     f.fridge.append(item)
   elif item == "apple_pie":
-    f.fridge.remove("flour")
+    f.fridge.remove("bread")
     f.fridge.remove("apple")
     print("Baking...")
     wait(2)
     f.fridge.append("apple pie")
   elif item == "peach_pie":
-    f.fridge.remove("flour")
+    f.fridge.remove("bread")
     f.fridge.remove("peach")
     print("Baking...")
     wait(2)
     f.fridge.append("peach pie")
   elif item == "pumpkin_pie":
-    f.fridge.remove("flour")
+    f.fridge.remove("bread")
     f.fridge.remove("pumpkin")
     print("Baking...")
     wait(2)
     f.fridge.append("pumpkin pie")
+  elif item == "bread":
+    f.fridge.remove("flour")
+    f.fridge.remove("milk")
+    f.fridge.remove("egg")
+    print("Baking...")
+    wait(2)
+    f.fridge.append("bread")
+  elif item == "cookie":
+    f.fridge.remove("flour")
+    f.fridge.remove("milk")
+    f.fridge.remove("egg")
+    f.fridge.remove("sugar")
+    f.fridge.remove("chocolate")
+    print("Baking...")
+    wait(2)
+    f.fridge.append("cookie")
+  elif item == "chocolate":
+    f.fridge.remove("milk")
+    f.fridge.remove("sugar")
+    f.fridge.remove("cocoa")
+    print("Baking...")
+    wait(2)
+    f.fridge.append("chocolate")
+
     
 @commands.add_command("requests")
 def requests():
   for d in f.requests:
     name = d['name']
     item = d['item']
-    pay = d['pay']
+    pay = str(d['pay'])
     gender = d['gender']
     if gender == "male":
       if item == "apple pie":
@@ -114,14 +148,18 @@ def recipes(item):
     print("bun")
     print("beef")
   elif item == "apple_pie":
-    print("flour")
+    print("bread")
     print("apple")
   elif item == "peach_pie":
-    print("flour")
+    print("bread")
     print("peach")
   elif item == "pumpkin_pie":
-    print("flour")
+    print("bread")
     print("pumpkin")
+  elif item == "bread":
+    print("flour")
+    print("milk")
+    print("egg")
 
 @commands.add_command("deliver")
 def deliver(name):
@@ -131,7 +169,9 @@ def deliver(name):
       del f.requests[i]
       f.fridge.remove(mainde["item"])
       f.requests.append(makeRequest())
+      f.money = f.money + mainde["pay"]
       break
+
 
 @commands.add_command("save")
 def save():
@@ -159,6 +199,9 @@ def login(username):
   else:
     f.underline("accounts are only for devs.")  
     
+@commands.add_command("money")
+def money():
+  print("You have $"+str(f.money)+".")
 
 while True:
   cmd = commands.execute(input('>>> ',),)
