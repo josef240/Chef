@@ -23,6 +23,8 @@ def help():
   print("this tells you the ingerdents you need to make a recipe.\n")
   f.italic("deliver ","name")
   print("type deliver and the persons name to give them the item and make them leave the store.\n")
+  print("money")
+  print("shows how much money you have.\n")
   
 
 @commands.add_command("get")
@@ -148,18 +150,28 @@ def recipes(item):
     print("bun")
     print("beef")
   elif item == "apple_pie":
-    print("bread")
+    print("bread (seperate recipe)")
     print("apple")
   elif item == "peach_pie":
-    print("bread")
+    print("bread (seperate recipe)")
     print("peach")
   elif item == "pumpkin_pie":
-    print("bread")
+    print("bread (seperate recipe)")
     print("pumpkin")
   elif item == "bread":
     print("flour")
     print("milk")
     print("egg")
+  elif item == "chocolate":
+    print("sugar")
+    print("milk")
+    print("cocoa")
+  elif item == "cookie":
+    print("flour")
+    print("milk")
+    print("egg")
+    print("sugar")
+    print("chocolate (seperate recipe)")
 
 @commands.add_command("deliver")
 def deliver(name):
