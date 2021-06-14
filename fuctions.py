@@ -5,10 +5,11 @@ prices = {
   'peach pie': 11.99,
   'chocolate': 14.99,
   'pumpkin pie': 19.99,
-  'cookie': 19.99
+  'cookie': 19.99,
+  'chocolate cookies': 29.99
 }
-prices
 fridge = []
+code = 234567899
 username=""
 requests = [{
   "name": "John",

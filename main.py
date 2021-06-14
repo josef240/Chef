@@ -188,13 +188,28 @@ def deliver(name):
 @commands.add_command("save")
 def save():
   if f.username == "":
-    print("You are not signed in.")
+    a = input("You are not signed in. Make a save code? y/n")
+    if a=="y":
+      saveid = id()
+      f.code = saveid
+      db[saveid] = {"fridge": f.fridge,"requests": f.requests,"money": f.money}
   else:
     db[f.username] = {"fridge": f.fridge,"requests": f.requests,"money": f.money}
     print("Saved Successfully")
 
+@commands.add_command("code")
+def code():
+  print("savecode is "+str(f.code))
+
 def load():
   dictyu = db[f.username]
+  f.fridge = dictyu['fridge']
+  f.money = dictyu['money']
+  f.requests = dictyu['requests']
+
+@commands.add_command("load")
+def ided(id1):
+  dictyu = db[id1]
   f.fridge = dictyu['fridge']
   f.money = dictyu['money']
   f.requests = dictyu['requests']
