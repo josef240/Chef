@@ -5,7 +5,11 @@ import pycommands as core
 import fuctions as f
 import random as r
 from time import sleep as wait
-print("Hi! Let's get cooking! \nType help to learn how to play.")
+if db['event'] == "none":
+  print("Hi! Let's get cooking! \nType help to learn how to play.")
+else:
+  print("Hi! Let's get cooking! The event is "+db['event']+"! \nType help to learn how to play.")
+  f.foodlist += list(db["event_items"])
 commands = core.Commands(
  '{} was not recognized as a command',
 )
@@ -121,7 +125,15 @@ def make(item):
     print("Baking...")
     wait(2)
     f.fridge.append("chocolate")
-
+  elif item == "chocolate_cookie":
+    f.fridge.remove("flour")
+    f.fridge.remove("milk")
+    f.fridge.remove("egg")
+    f.fridge.remove("sugar")
+    f.fridge.remove("cocoa")
+    print("Baking...")
+    wait(2)
+    f.fridge.append("chocolate cookie")
     
 @commands.add_command("requests")
 def requests():
@@ -172,6 +184,12 @@ def recipes(item):
     print("egg")
     print("sugar")
     print("chocolate (seperate recipe)")
+  elif item == "chocolate_cookie":
+    print("flour")
+    print("milk")
+    print("egg")
+    print("sugar")
+    print("cocoa")
 
 @commands.add_command("deliver")
 def deliver(name):

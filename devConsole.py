@@ -11,10 +11,8 @@ if ina == "a":
 if ina == "b":
   event = input("which event:")
   if event == "juneteenth":
-    db["event"] = "juneteenth"
+    db["event"] = "Juneteenth Week"
     db["event_items"] = ['chocolate cookies']
   else:
-    db["event"] = ""
+    db["event"] = "none"
     db["event_items"] = []
-if ina == "reset":
-  db["foodlist"] = ['burger', 'apple pie', 'peach pie', 'pumpkin pie', 'bread', 'chocolate', 'cookie'] + list(db["event_items"])
