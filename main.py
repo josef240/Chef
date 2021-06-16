@@ -9,7 +9,8 @@ if db['event'] == "none":
   print("Hi! Let's get cooking! \nType help to learn how to play.")
 else:
   print("Hi! Let's get cooking! The event is "+db['event']+"! \nType help to learn how to play.")
-  f.foodlist += list(db["event_items"])
+  event_items=db["event_items"]
+  f.foodlist += list(event_items)
 commands = core.Commands(
  '{} was not recognized as a command',
 )
