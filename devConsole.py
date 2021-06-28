@@ -15,7 +15,7 @@ if ina == "b":
     db["event_items"] = ['chocolate cookies']
   elif event == "july4":
     db["event"] = "Independence Day"
-    db["event_items"] = ['hot dog']
+    db["event_items"] = ['hot dog', 'usa doughnut']
   else:
     db["event"] = "none"
     db["event_items"] = []

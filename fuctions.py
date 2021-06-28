@@ -1,6 +1,9 @@
 prices = {
+  'sprinkles': 0.99,
   'burger': 4.99,
+  'bagel': 4.99,
   'apple pie': 9.99,
+  'doughnut': 9.99,
   'bread': 9.99,
   'peach pie': 11.99,
   'chocolate': 14.99,
@@ -9,6 +12,11 @@ prices = {
   'chocolate cookies': 29.99
 }
 fridge = []
+colors = ["pink", "red", "orange", "yellow", "green", "blue", "purple", "white"]
+def ransprink():
+  from random import choice
+  a = choice(colors+" sprinkles")
+  return a
 username=""
 requests = [{
   "name": "John",
@@ -22,7 +30,7 @@ requests = [{
   "pay": prices['burger'],
   "gender": 'female'
 }]
-foodlist=['burger', 'apple pie', 'peach pie', 'pumpkin pie', 'bread', 'chocolate', 'cookie']
+foodlist=['burger', 'apple pie', 'peach pie', 'pumpkin pie', 'bread', 'chocolate', 'cookie', 'bagel', 'doughnut']
 
 def ranfood():
   from random import choice

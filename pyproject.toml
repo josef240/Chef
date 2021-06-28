@@ -6,8 +6,8 @@ authors = ["josef24 <<>>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-replit = "^3.0.0"
 names = "^0.3.0"
+replit = "^3.1.0"
 
 [tool.poetry.dev-dependencies]
 

@@ -48,13 +48,21 @@ def get(item, number=1):
   elif item == "sugar":
     f.fridge.append("sugar")
   elif item == "cocoa":
-    f.fridge.append("cocoa")  
+    f.fridge.append("cocoa")
+  elif item == "sprinkles":
+      aq = input("Which color?")
+      for ad in f.colors:
+        if ad == aq: 
+         f.fridge.append(aq + " sprinkles")
 
 @commands.add_command("fridge")
 def fridge():
   print("You have:")
   for sa in f.fridge:
-    print(sa)
+    if sa.type == list:
+      print(sa['name']+" with "+sa['addon'])
+    else:
+      print(sa)
 
 def makeRequest(): 
   aws=r.randint(1,2)
@@ -65,12 +73,24 @@ def makeRequest():
    hiwor = n.get_first_name(gender='Female')
    gder="female"
   itemood = f.ranfood()
-  dictus = {
-    "name": hiwor,
-    "item": itemood,
-    "pay": f.prices[itemood],
-    "gender": gder
-  }
+  if itemood == "doughnut":
+    a = "!"
+    sa = f.ransprink()
+    itemood = ['name': itemood, 'addon': sa]
+  if a = "!"
+    dictus = {
+      "name": hiwor,
+      "item": itemood,
+      "pay": f.prices[itemood['name']]+f.prices["sprinkles"],
+      "gender": gder
+    }
+  else:
+    dictus = {
+      "name": hiwor,
+      "item": itemood,
+      "pay": f.prices[itemood],
+      "gender": gder
+    }
   return dictus
 
 @commands.add_command("make")
@@ -130,24 +150,53 @@ def make(item):
     print("Baking...")
     wait(2)
     f.fridge.append("chocolate cookie")
+  elif item == "bagel":
+    f.fridge.remove("flour")
+    f.fridge.remove("milk")
+    f.fridge.remove("egg")
+    print("Mixing..")
+    wait(2)
+    print("Baking..")
+    wait(2)
+    f.fridge.append("bagel")
+  elif item == "doughnut":
+    f.fridge.remove("bagel")
+    f.fridge.remove("sugar")
+    spr = input("What color sprinkle?")
+    if spr in f.colors:
+      f.fridge.append(spr+" sprinkles")
+    print("Mixing..")
+    wait(2)
+    print("Baking..")
+    wait(2)
     
 @commands.add_command("requests")
 def requests():
   for d in f.requests:
-    name = d['name']
-    item = d['item']
-    pay = str(d['pay'])
-    gender = d['gender']
-    if gender == "male":
-      if item == "apple pie":
-        print(name+" wants an "+item+". He will give you $"+pay+" for it.")
+    if type(d['item']) != "list":
+      name = d['name']
+      item = d['item']
+      pay = str(d['pay'])
+      gender = d['gender']
+      if gender == "male":
+        if item == "apple pie":
+          print(name+" wants an "+item+". He will give you $"+pay+" for it.")
+        else:
+          print(name+" wants a "+item+". He will give you $"+pay+" for it.")
       else:
-        print(name+" wants a "+item+". He will give you $"+pay+" for it.")
+        if item == "apple pie":
+          print(name+" wants an "+item+". She will give you $"+pay+" for it.")
+        else:
+          print(name+" wants a "+item+". She will give you $"+pay+" for it.")
     else:
-      if item == "apple pie":
-        print(name+" wants an "+item+". She will give you $"+pay+" for it.")
-      else:
-        print(name+" wants a "+item+". She will give you $"+pay+" for it.")
+      name = d['name']
+      item = d['item']
+      pay = str(d['pay'])
+      gender = d['gender']
+      if gender == "male":
+        print(name+" wants a "+item["name"]+" with "+ item['addon']+". He will give you $"+pay+" for it.")
+      else: 
+        print(name+" wants a "+item["name"]+" with "+ item['addon']+". She will give you $"+pay+" for it.")
 
 
 @commands.add_command("recipe")
