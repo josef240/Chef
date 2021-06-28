@@ -3,9 +3,11 @@ prices = {
   'apple pie': 9.99,
   'bread': 9.99,
   'peach pie': 11.99,
-  'pumpkin pie': 19.99
+  'chocolate': 14.99,
+  'pumpkin pie': 19.99,
+  'cookie': 19.99,
+  'chocolate cookies': 29.99
 }
-prices
 fridge = []
 username=""
 requests = [{
@@ -20,7 +22,7 @@ requests = [{
   "pay": prices['burger'],
   "gender": 'female'
 }]
-foodlist=['burger', 'apple pie', 'peach pie', 'pumpkin pie', 'bread']
+foodlist=['burger', 'apple pie', 'peach pie', 'pumpkin pie', 'bread', 'chocolate', 'cookie']
 
 def ranfood():
   from random import choice
