@@ -23,6 +23,8 @@ def help():
   print("this tells you the ingerdents you need to make a recipe.\n")
   f.italic("deliver ","name")
   print("type deliver and the persons name to give them the item and make them leave the store.\n")
+  print("money")
+  print("shows how much money you have.\n")
   
 
 @commands.add_command("get")
@@ -119,7 +121,15 @@ def make(item):
     print("Baking...")
     wait(2)
     f.fridge.append("chocolate")
-
+  elif item == "chocolate_cookie":
+    f.fridge.remove("flour")
+    f.fridge.remove("milk")
+    f.fridge.remove("egg")
+    f.fridge.remove("sugar")
+    f.fridge.remove("cocoa")
+    print("Baking...")
+    wait(2)
+    f.fridge.append("chocolate cookie")
     
 @commands.add_command("requests")
 def requests():
@@ -148,18 +158,34 @@ def recipes(item):
     print("bun")
     print("beef")
   elif item == "apple_pie":
-    print("bread")
+    print("bread (seperate recipe)")
     print("apple")
   elif item == "peach_pie":
-    print("bread")
+    print("bread (seperate recipe)")
     print("peach")
   elif item == "pumpkin_pie":
-    print("bread")
+    print("bread (seperate recipe)")
     print("pumpkin")
   elif item == "bread":
     print("flour")
     print("milk")
     print("egg")
+  elif item == "chocolate":
+    print("sugar")
+    print("milk")
+    print("cocoa")
+  elif item == "cookie":
+    print("flour")
+    print("milk")
+    print("egg")
+    print("sugar")
+    print("chocolate (seperate recipe)")
+  elif item == "chocolate_cookie":
+    print("flour")
+    print("milk")
+    print("egg")
+    print("sugar")
+    print("cocoa")
 
 @commands.add_command("deliver")
 def deliver(name):
