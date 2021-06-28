@@ -13,6 +13,9 @@ if ina == "b":
   if event == "juneteenth":
     db["event"] = "Juneteenth Week"
     db["event_items"] = ['chocolate cookies']
+  elif event == "july4":
+    db["event"] = "Independence Day"
+    db["event_items"] = ['hot dog']
   else:
     db["event"] = "none"
     db["event_items"] = []

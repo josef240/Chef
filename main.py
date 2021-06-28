@@ -5,12 +5,7 @@ import pycommands as core
 import fuctions as f
 import random as r
 from time import sleep as wait
-if db['event'] == "none":
-  print("Hi! Let's get cooking! \nType help to learn how to play.")
-else:
-  print("Hi! Let's get cooking! The event is "+db['event']+"! \nType help to learn how to play.")
-  event_items=db["event_items"]
-  f.foodlist += list(event_items)
+print("Hi! Let's get cooking! \nType help to learn how to play.")
 commands = core.Commands(
  '{} was not recognized as a command',
 )
@@ -207,28 +202,13 @@ def deliver(name):
 @commands.add_command("save")
 def save():
   if f.username == "":
-    a = input("You are not signed in. Make a save code? y/n")
-    if a=="y":
-      saveid = id()
-      f.code = saveid
-      db[saveid] = {"fridge": f.fridge,"requests": f.requests,"money": f.money}
+    print("You are not signed in.")
   else:
     db[f.username] = {"fridge": f.fridge,"requests": f.requests,"money": f.money}
     print("Saved Successfully")
 
-@commands.add_command("code")
-def code():
-  print("savecode is "+str(f.code))
-
 def load():
   dictyu = db[f.username]
-  f.fridge = dictyu['fridge']
-  f.money = dictyu['money']
-  f.requests = dictyu['requests']
-
-@commands.add_command("load")
-def ided(id1):
-  dictyu = db[id1]
   f.fridge = dictyu['fridge']
   f.money = dictyu['money']
   f.requests = dictyu['requests']
