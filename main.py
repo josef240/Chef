@@ -54,6 +54,8 @@ def get(item, number=1):
       for ad in f.colors:
         if ad == aq: 
          f.fridge.append(aq + " sprinkles")
+  elif item == "weiner":
+    f.fridge.append("weiner")
 
 @commands.add_command("fridge")
 def fridge():
@@ -170,6 +172,13 @@ def make(item):
     wait(2)
     print("Baking..")
     wait(2)
+  elif item == "hot_dog":
+    f.fridge.remove("weiner")
+    f.fridge.remove("bun")
+    f.fridge.remove("bun")
+    print("Grilling..")
+    wait(2)
+    f.fridge.append("hot_dog")
     
 @commands.add_command("requests")
 def requests():
