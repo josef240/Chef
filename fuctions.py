@@ -20,8 +20,11 @@ def ransprink():
 username=""
 requests = [{
   "name": "John",
-  "item":"burger",
-  "pay": prices['burger'],
+  "item": {
+    'name': "doughnut",
+    'addons':"red sprinkles"
+  },
+  "pay": prices['doughnut'],
   "gender": 'male'
 },
 {

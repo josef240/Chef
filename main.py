@@ -59,7 +59,7 @@ def get(item, number=1):
 def fridge():
   print("You have:")
   for sa in f.fridge:
-    if sa.type == list:
+    if type(sa) == list:
       print(sa['name']+" with "+sa['addon'])
     else:
       print(sa)
@@ -74,16 +74,17 @@ def makeRequest():
    gder="female"
   itemood = f.ranfood()
   if itemood == "doughnut":
+    sad = itemood
     a = "!"
     sa = f.ransprink()
-    itemood = ['name': itemood, 'addon': sa]
-  if a = "!"
-    dictus = {
-      "name": hiwor,
-      "item": itemood,
-      "pay": f.prices[itemood['name']]+f.prices["sprinkles"],
-      "gender": gder
-    }
+    itemood = {'name': sad, 'addon': sa}
+    if a == "!":
+      dictus = {
+        "name": hiwor,
+        "item": itemood,
+        "pay": f.prices[itemood['name']]+f.prices["sprinkles"],
+        "gender": gder
+      }
   else:
     dictus = {
       "name": hiwor,
@@ -164,7 +165,7 @@ def make(item):
     f.fridge.remove("sugar")
     spr = input("What color sprinkle?")
     if spr in f.colors:
-      f.fridge.append(spr+" sprinkles")
+      f.fridge.append("doughnut with "+spr+" sprinkles")
     print("Mixing..")
     wait(2)
     print("Baking..")
@@ -173,7 +174,8 @@ def make(item):
 @commands.add_command("requests")
 def requests():
   for d in f.requests:
-    if type(d['item']) != "list":
+    true = isinstance(d['item'], dict)
+    if true != True:
       name = d['name']
       item = d['item']
       pay = str(d['pay'])
@@ -193,8 +195,10 @@ def requests():
       item = d['item']
       pay = str(d['pay'])
       gender = d['gender']
+      addon = item['addons']
+      print(true)
       if gender == "male":
-        print(name+" wants a "+item["name"]+" with "+ item['addon']+". He will give you $"+pay+" for it.")
+        print(name+" wants a "+item['name']+" with "+ addon +". He will give you $"+pay+" for it.")
       else: 
         print(name+" wants a "+item["name"]+" with "+ item['addon']+". She will give you $"+pay+" for it.")
 
@@ -235,17 +239,33 @@ def recipes(item):
     print("egg")
     print("sugar")
     print("cocoa")
+  elif item == "bagel":
+    print("flour")
+    print("milk")
+    print("egg")
+  elif item == "doughnut":
+    print("bagel (seperate recipe)")
+    print("sugar")
+    print("sprinkles")
 
 @commands.add_command("deliver")
 def deliver(name):
   for i in range(len(f.requests)):
     mainde = f.requests[i]
-    if mainde['name'] == name:
-      del f.requests[i]
-      f.fridge.remove(mainde["item"])
-      f.requests.append(makeRequest())
-      f.money = f.money + mainde["pay"]
-      break
+    if isinstance(mainde['item'], dict) != True:
+      if mainde['name'] == name:
+        del f.requests[i]
+        f.fridge.remove(mainde["item"])
+        f.requests.append(makeRequest())
+        f.money = f.money + mainde["pay"]
+        break
+    else:
+      if mainde['name'] == name:
+        del f.requests[i]
+        f.fridge.remove(mainde["item"]['name'] + " with "+mainde['item']['addons'])
+        f.requests.append(makeRequest())
+        f.money = f.money + mainde["pay"]
+        break
 
 
 @commands.add_command("save")
